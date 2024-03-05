@@ -106,10 +106,11 @@ def shortest_path(source, target):
         temp = []
         for i in paths:
             if i is not None and i[-1][1] != target:
-                for j in neighbors_for_person(i[-1][1]):
+                io = neighbors_for_person(i[-1][1])
+                for j in io:
                     if not visited.__contains__(j[1]):
-                        print(i)
-                        x = i.append(j)
+                        x = i.copy()
+                        x.append(j)
                         temp.append(x)
                         visited.append(j[1])
             else:
@@ -117,6 +118,7 @@ def shortest_path(source, target):
         if not temp:
             return None
         else:
+            print(temp)
             paths = temp
 
 def person_id_for_name(name):
