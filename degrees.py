@@ -126,6 +126,7 @@ def shortest_path(source, target):
                     return None
             else:
                 visited.append(current)
+                path.append(current)
                 current = next
 
 
