@@ -90,46 +90,32 @@ def shortest_path(source, target):
     If no possible path, returns None.
     """
 
-    retpath = []
-    path = []
-    visited = []
+    paths = []
+    visited = [source]
     current = source
+    neighbours = neighbors_for_person(current)
+    if current == target:
+        return []
+    else:
+        for i in neighbours:
+            paths.append([i])
+            visited.append(i)
+
 
     while True:
-        next = ""
-
-        if current == target:
-            path.append(current)
-            if len(path) < len(retpath):
-                retpath = path
-
-            if len(path) > 2:
-               current = path[-3]
-               path.pop(-1)
-               path.pop(-1)
+        temp = []
+        for i in paths:
+            if i[-1][1] != target:
+                for j in neighbors_for_person(i[-1][1]):
+                    if not visited.__contains__(j[1]):
+                        temp.append(i.append(j))
+                        visited.append(j[1])
             else:
-                return retpath
+                return i
+        if not temp:
+            return None
         else:
-            if len(retpath) == 0 or len(path) < len(retpath):
-                neibours = neighbors_for_person(current)
-                for i in neibours:
-                    if i[1] not in visited:
-                        next = i[1]
-                        break
-
-            if next == "":
-                if len(path) > 1:
-                    visited.append(current)
-                    current = path[-2]
-                    path.pop(-1)
-                else:
-                    return None
-            else:
-                visited.append(current)
-                path.append(current)
-                current = next
-
-
+            paths = temp
 
 def person_id_for_name(name):
     """
