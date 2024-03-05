@@ -105,7 +105,7 @@ def shortest_path(source, target):
     while True:
         temp = []
         for i in paths:
-            if i[-1][1] != target:
+            if i is not None and i[-1][1] != target:
                 for j in neighbors_for_person(i[-1][1]):
                     if not visited.__contains__(j[1]):
                         print(i)
