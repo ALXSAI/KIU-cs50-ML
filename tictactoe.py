@@ -57,7 +57,7 @@ def result(board, action):
     """
 
     play = player(board)
-    if not actions(board).__contains__(action):
+    if not list(actions(board)).__contains__(action):
         raise ValueError
     res = board.copy()[action[0]][action[1]] = play
 
