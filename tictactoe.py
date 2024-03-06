@@ -41,12 +41,14 @@ def actions(board):
     """
     res = []
 
-    for i in range(len(board)):
-        for j in range(i):
-            if board[i][j] == EMPTY:
-                res.append((i,j))
-
-    return set(res)
+    if not terminal(board):
+        for i in range(len(board)):
+            for j in range(i):
+                if board[i][j] == EMPTY:
+                    res.append((i,j))
+        return set(res)
+    else:
+        return {}
 
 
 def result(board, action):
