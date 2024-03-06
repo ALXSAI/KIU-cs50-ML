@@ -44,7 +44,7 @@ def actions(board):
     for i in range(len(board)):
         for j in range(i):
             if board[i][j] == EMPTY:
-                res.append((j,i))
+                res.append((i,j))
 
     return set(res)
 
@@ -57,9 +57,9 @@ def result(board, action):
     play = player(board)
     if not actions(board).__contains__(action):
         raise ValueError
-    board[action[0]][action[1]] = play
+    res = board.copy()[action[0]][action[1]] = play
 
-    return board
+    return res
 
 
 
@@ -140,7 +140,7 @@ def minimax(board):
     """
     play = player(board)
 
-    acts = actions(board)
+    acts = list(actions(board))
     print(acts)
     temp = []
     for i in range(len(acts)):
@@ -171,7 +171,7 @@ def recurser(board):
     if terminal(board):
         return utility(board)
     else:
-        acts = actions(board)
+        acts = list(actions(board))
         sum = 0
         for i in acts:
             sum += recurser(result(board,i))
