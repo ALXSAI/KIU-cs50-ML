@@ -53,13 +53,10 @@ def result(board, action):
     Returns the board that results from making move (i, j) on the board.
     """
 
-    play = player(board)
     act = list(actions(board))
-    print(act)
-    print(action)
     if not act.__contains__(action):
         raise ValueError
-    res = board.copy()[action[0]][action[1]] = play
+    res = board.copy()[action[0]][action[1]]
 
     return res
 
