@@ -172,6 +172,6 @@ def recurser(board):
         acts = actions(board)
         sum = 0
         for i in acts:
-            sum += recurser(result(board,acts))
+            sum += recurser(result(board,i))
         return sum
 
