@@ -41,14 +41,11 @@ def actions(board):
     """
     res = []
 
-    if not terminal(board):
-        for i in range(len(board)):
-            for j in range(i):
-                if board[i][j] == EMPTY:
-                    res.append((i,j))
-        return set(res)
-    else:
-        return {}
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == EMPTY:
+                res.append((i,j))
+    return set(res)
 
 
 def result(board, action):
@@ -57,7 +54,10 @@ def result(board, action):
     """
 
     play = player(board)
-    if not list(actions(board)).__contains__(action):
+    act = list(actions(board))
+    print(act)
+    print(action)
+    if not act.__contains__(action):
         raise ValueError
     res = board.copy()[action[0]][action[1]] = play
 
