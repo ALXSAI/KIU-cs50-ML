@@ -1,7 +1,7 @@
 """
 Tic Tac Toe Player
 """
-
+import copy
 import math
 
 X = "X"
@@ -57,11 +57,13 @@ def result(board, action):
     act = list(actions(board))
     if not act.__contains__(action):
         raise ValueError
-    res = board.copy()
+
+    res = copy.deepcopy(board)
     res[action[0]][action[1]] = play
 
-    print("board")
+    print(board)
     print(res)
+
     return res
 
 
@@ -146,12 +148,10 @@ def minimax(board):
     play = player(board)
 
     acts = list(actions(board))
-    print(acts)
     temp = []
     for i in range(len(acts)):
         num = recurser(result(board,acts[i]))
         temp.append((acts[i],num))
-    print(temp)
 
     if temp:
         select = temp[0][1]
