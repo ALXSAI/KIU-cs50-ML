@@ -44,9 +44,9 @@ def actions(board):
     for i in range(len(board)):
         for j in range(i):
             if board[i][j] == EMPTY:
-                res.append((i,j))
+                res.append((j,i))
 
-    return res
+    return set(res)
 
 
 def result(board, action):
@@ -55,6 +55,8 @@ def result(board, action):
     """
 
     play = player(board)
+    if not actions(board).__contains__(action):
+        raise ValueError
     board[action[0]][action[1]] = play
 
     return board
@@ -66,13 +68,13 @@ def winner(board):
     Returns the winner of the game, if there is one.
     """
     for i in board:
-        winner = True
+        winnerel = True
         comp = i[0]
         for j in i:
             if j != comp:
-                winner = False
+                winnerel = False
                 break
-        if winner:
+        if winnerel:
             return comp
 
     winner1 = False
@@ -81,13 +83,13 @@ def winner(board):
     comp2 = board[0][2]
 
     for i in range(3):
-        winner = True
+        winnerel = True
         comp = board[0][i]
         for j in range(3):
             if board[j][i] != comp:
-                winner = False
+                winnerel = False
                 break
-        if winner:
+        if winnerel:
             return comp
 
         if winner1 and board[i][i] != comp1:
