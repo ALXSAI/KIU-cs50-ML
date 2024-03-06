@@ -66,6 +66,8 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
+    if board is None:
+        return None
     for i in board:
         winnerel = True
         comp = i[0]
