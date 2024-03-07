@@ -141,16 +141,12 @@ def minimax(board):
         selectact = temp[0][0]
         if play == "X":
             for i in range(1,len(temp)):
-                if terminal(result(board,temp[i][0])) == 1:
-                    return temp[i][0]
                 if temp[i][1] > select:
                     select = temp[i][1]
                     selectact = temp[i][0]
             return selectact
         else:
             for i in range(1,len(temp)):
-                if terminal(result(board,temp[i][0])) == -1:
-                    return temp[i][0]
                 if temp[i][1] < select:
                     select = temp[i][1]
                     selectact = temp[i][0]
@@ -165,10 +161,13 @@ def recurser(board):
     else:
         play = player(board)
         loss = 0
+        win = 0
         if play == "X":
             loss = -1
+            win = 1
         else:
             loss = 1
+            win = -1
 
         acts = list(actions(board))
         sum = 0
