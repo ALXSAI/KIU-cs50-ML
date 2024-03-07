@@ -163,9 +163,26 @@ def recurser(board):
     if terminal(board):
         return utility(board)
     else:
+        play = player(board)
+        loss = 0
+        if play == "X":
+            loss = -1
+        else:
+            loss = 1
+
         acts = list(actions(board))
         sum = 0
         for i in acts:
-            sum += recurser(result(board,i))
+            res = result(board,i)
+            if checkimmwin(res) == loss:
+                return loss
+            sum += recurser(res)
         return sum
 
+def checkimmwin(board):
+    act = actions(board)
+    for i in act:
+        res = result(board,i)
+        if res != 0:
+           return res
+    return 0
