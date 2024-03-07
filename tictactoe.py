@@ -132,6 +132,7 @@ def minimax(board):
     acts = list(actions(board))
     temp = []
     for i in range(len(acts)):
+
         num = recurser(result(board,acts[i]))
         temp.append((acts[i],num))
 
@@ -140,12 +141,16 @@ def minimax(board):
         selectact = temp[0][0]
         if play == "X":
             for i in range(1,len(temp)):
+                if result(board,temp[i][0]) == 1:
+                    return temp[i][0]
                 if temp[i][1] > select:
                     select = temp[i][1]
                     selectact = temp[i][0]
             return selectact
         else:
             for i in range(1,len(temp)):
+                if result(board,temp[i][0]) == -1:
+                    return temp[i][0]
                 if temp[i][1] < select:
                     select = temp[i][1]
                     selectact = temp[i][0]
