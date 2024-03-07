@@ -135,6 +135,8 @@ def minimax(board):
 
         num = recurser(result(board,acts[i]))
         temp.append((acts[i],num))
+    if winner(board):
+        return None
 
     if temp:
         select = temp[0][1]
