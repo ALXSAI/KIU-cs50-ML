@@ -1,3 +1,4 @@
 I solved this exercise using recoursion, I have a helper function called recourser and a immediate loss checker function,
 the recourser is called by minmax and goes through every possible position, if it sees that the next move could result in a loss
-it avoids that position.
+it avoids that position. The weight of a move is also divided by the number of moves in its round set, this allows for recourser to accurately 
+compensate for depth, making a win on the first move more appealing than a win on the second.
