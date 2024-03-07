@@ -1,0 +1,3 @@
+I solved this exercise using recoursion, I have a helper function called recourser and a immediate loss checker function,
+the recourser is called by minmax and goes through every possible position, if it sees that the next move could result in a loss
+it avoids that position.
