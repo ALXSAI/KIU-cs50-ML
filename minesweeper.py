@@ -201,8 +201,17 @@ class MinesweeperAI():
                         lemines += 1
                     elif (i,j) not in self.safes and (i,j) not in self.mines:
                         unknown.append((i,j))
+        newcount = count - lemines
 
-        newsen = Sentence(unknown,count-lemines)
+        newnewunknown = []
+        for i in self.knowledge:
+            if i.cells.issubset(set(unknown)) and i.count < newcount:
+                for j in unknown:
+                    if j not in i.cells:
+                        newnewunknown.append(j)
+                newcount -= i.count
+
+        newsen = Sentence(unknown,newcount)
         self.knowledge.append(newsen)
 
         for sen in self.knowledge:
@@ -218,6 +227,8 @@ class MinesweeperAI():
                 newnewset = sen.cells.difference(newsen.cells)
                 newnewsen = Sentence(newnewset,sen.count - newsen.count)
                 self.knowledge.append(newnewsen)
+
+
 
     def make_safe_move(self):
         """
