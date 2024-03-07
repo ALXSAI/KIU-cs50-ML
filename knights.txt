@@ -1,0 +1,2 @@
+For all knowladge bases, we first work on the main deduction of the puzzle,
+then based on the deductions result we create implications that allow other symbols to be inferred.
