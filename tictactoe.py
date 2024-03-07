@@ -175,17 +175,15 @@ def recurser(board):
         sum = 0
         for i in acts:
             res = result(board,i)
-            if checkimmwin(res) == loss:
+            if checkimmwin(res,loss) == loss:
                 return loss * 1000
-            if checkimmwin(res) == win:
-                return win * 1000
-            sum += recurser(res)
+            sum += recurser(res)/len(acts)
         return sum
 
-def checkimmwin(board):
+def checkimmwin(board,loss):
     act = actions(board)
     for i in act:
         res = result(board,i)
-        if res != 0:
+        if res == loss:
            return res
     return 0
