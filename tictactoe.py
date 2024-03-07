@@ -72,44 +72,26 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    if board is None:
-        return None
-    for i in board:
-        winnerel = True
-        comp = i[0]
-        for j in i:
-            if j != comp:
-                winnerel = False
-                break
-        if winnerel:
-            return comp
+    for i in range(0,len(board)):
+        if board[i][0] == board[i][1] == board[i][2]:
+            return board[i][0]
+        if board[0][i] == board[1][i] == board[2][i]:
+            return board[0][i]
 
-    winner1 = False
-    comp1 = board[0][0]
-    winner2 = False
-    comp2 = board[0][2]
-
-    for i in range(3):
-        winnerel = True
-        comp = board[0][i]
-        for j in range(3):
-            if board[j][i] != comp:
-                winnerel = False
-                break
-        if winnerel:
-            return comp
-
-        if winner1 and board[i][i] != comp1:
-            winner1 = False
-        if winner2 and board[i][2-i] != comp2:
-            winner2 = False
-
-    if winner1:
-        return comp1
-    elif winner2:
-        return comp2
-    else:
-        return None
+    diag1 = board[0][0]
+    diag1bool = True
+    diag2 = board[0][2]
+    diag2bool = True
+    for i in range(0,len(board)):
+        if diag1bool and board[i][i] != diag1:
+            diag1bool = False
+        if diag2bool and board[i][2-i] != diag2:
+            diag2bool = False
+    if diag1bool:
+        return diag1
+    if diag2bool:
+        return diag2
+    return None
 
 
 def terminal(board):
