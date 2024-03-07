@@ -1,0 +1,12 @@
+Here we have 2 main parts:
+
+sentance and mineai
+
+for sentance we dont check individual cells but rather check on a general basis
+if all cells are safe or now
+
+for mine ai we make either a known safe move, a random move or we add a new sentance
+a new sentance is added after each move here we take the newly unlocked cell
+its number and add a new centance, as well as update all existing sentances
+that might contain these cells
+we look for subsets as well which we cut into two, one the same as old, the other a difference
