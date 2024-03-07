@@ -213,15 +213,17 @@ class MinesweeperAI():
                 for c in sen.known_safes().copy():
                     self.mark_safe(c)
 
-        for sen in self.knowledge:
-            if newsen.cells.issubset(sen.cells) and sen.count >0 and newsen.count > 0 and newsen != sen:
-                newnewset = sen.cells.difference(newsen.cells)
-                newnewsen = Sentence(newnewset,sen.count - newsen.count)
-                self.knowledge.append(newnewsen)
-            elif sen.cells.issubset(newsen.cells) and sen.count > 0 and newsen.count > 0 and newsen != sen:
-                newnewset = newsen.cells.difference(sen.cells)
-                newnewsen = Sentence(newnewset, newsen.count - sen.count)
-                self.knowledge.append(newnewsen)
+        for sen1 in self.knowledge:
+            for sen2 in self.knowledge:
+                if sen1 is sen2:
+                    pass
+                elif sen1 == sen2:
+                    self.knowledge.remove(sen2)
+                elif sen1.cells.issubset(sen2.cells):
+                    newsen = Sentence(sen2.cells - sen1.cells, sen2.count - sen1.count)
+                    if newsen not in self.knowledge:
+                        self.knowledge.append(newsen)
+
 
 
     def make_safe_move(self):
