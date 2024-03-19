@@ -118,11 +118,11 @@ def iterate_pagerank(corpus, damping_factor):
     PageRank values should sum to 1.
     """
     ans = {}
-    maxchange = 0.0011
     for i in corpus:
         ans.update({i:1-damping_factor/len(corpus)})
-    while maxchange > 0.001:
-        maxchange = 0.0011
+
+    while True:
+        maxchange = 0
         for i in ans:
             trmod = transition_model(corpus,i,damping_factor)
             for j in trmod:
@@ -131,7 +131,8 @@ def iterate_pagerank(corpus, damping_factor):
                 if temp2 - temp1 > maxchange:
                     maxchange = temp2 - temp1
                 ans.update({j:temp2})
-
+        if maxchange <= 0.001:
+            break
 
 
 
