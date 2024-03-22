@@ -1,0 +1,14 @@
+This exercise was very confusing for me in the beggining, as i did not fully understand what we were suppsoed to do
+I had to look at a few different exervcises like this as well as stack overflow to get the premise. afterwards it was
+very easy. But i did go about it in a very unoptimized way at first. The joint probability function simply
+calculates possibility for each person that chance it is that they have what they do have. There is no need to check
+if they do actually have the trait or gene its claimed. That means that we dont need to nest calculations of probability
+and recursively calculate parents probability and then conditional probability of children. We take everything as fact.
+DUe to this we simply check whenever someone is in the given arrays, if they are we calculate the possability based
+off their parents or general distribution, if  not then based of mutation.
+
+for the second function we just add the joint probability of the entire set to each persons probability
+
+and for the last one we just generalize by first summing everything, then making the division of n/sum for each
+gene of each person as well as traits. Here i actually found a far easier way to create such dictionaries than what
+i usually do of appending by using for as an assignment instead of a seperate codeblock
