@@ -1,0 +1,18 @@
+For the transition model we first check what pages our page is connected to, afterwards we distribute the
+dampening factor over these pages equally. For the rest of the random jump chance, we distribute it equally to
+all pages in the dictionary including itself, for pages that were already processed in the first part this prob is added
+on.
+
+for sample based pr what i did is first i added all pages into the dict with pr 0
+randomly chose one of the pages from the dict. afterwards we first add 1 to the pr of the current page
+then calculate the chance to jump to another. how we do this is by getting a random chance from 0 to 1 by using
+random.uniform. and then iteratively subtract possabilities that we jump to a page from the transition model of the
+current page. if after subtraction the chance is <=0 then we chose that page as current for the next iteration
+this continues for n samples
+
+for the last iterative pr function
+we first initialize all pages with pr of 1-dampening_factor/Pages number
+afterwards we iterate over all pages and for each page it links to, that pages pr is updated
+by 1/pages linked by this page.
+for each change we keep track of the maximal change in pr that has occured and whenever at the end of a loop
+this max has reached below or equal to 0.001 we break out of the loop
