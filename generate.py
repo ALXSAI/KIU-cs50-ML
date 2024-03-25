@@ -135,21 +135,56 @@ class CrosswordCreator():
         Return True if arc consistency is enforced and no domains are empty;
         return False if one or more domains end up empty.
         """
-        raise NotImplementedError
+        if arcs is None:
+            queue = []
+            for x in self.domains.keys():
+                for y in self.domains.keys():
+                    if x != y:
+                        queue.append((x, y))
+        else:
+            queue = []
+            for arc in arcs:
+                queue.append(arc)
+
+        while queue is not None or queue is not []:
+            arc = queue.pop(0)
+            if (arc is not None):
+                x = arc[0]
+                y = arc[1]
+                if self.revise(x, y):
+                    if (len(self.domains[x]) == 0):
+                        return False
+                    for z in self.crossword.neighbors(x):
+                        if z != y:
+                            queue.append((z, x))
+            else:
+                break
+        return True
 
     def assignment_complete(self, assignment):
         """
         Return True if `assignment` is complete (i.e., assigns a value to each
         crossword variable); return False otherwise.
         """
-        raise NotImplementedError
+        for i in assignment:
+            if not assignment.get(i):
+                return False
+        return True
 
     def consistent(self, assignment):
         """
         Return True if `assignment` is consistent (i.e., words fit in crossword
         puzzle without conflicting characters); return False otherwise.
         """
-        raise NotImplementedError
+        for i in assignment:
+            for j in self.crossword.neighbors(i):
+                ov = self.crossword.overlaps(i,j)
+                if not ov:
+                    pass
+                else:
+                    if assignment.get(i)[ov[0]] != assignment.gey(j)[ov[1]]:
+                        return False
+        return True
 
     def order_domain_values(self, var, assignment):
         """
