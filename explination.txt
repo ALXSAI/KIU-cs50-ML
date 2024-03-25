@@ -1,0 +1,15 @@
+for this exercise we are creating a crossword puzzle from the end to the back. first we create possible values for
+each variable - slots where words can be entered. We work our way back by going from a solved crossword back
+step by step untill we get an empty puzzle with a way to solve it as well. The function backtrace does this logid
+in a recoursive way
+
+select unassigned varibale is our way of guessing, it allows us to check what value we could assign a variable
+it does this by iterating over all possible words and choosing the one that best fits our critera
+of the largest set of values and smallest amount of invalidated crossowers with other words
+For the last part we use domain values function which returns this very degree(invalidated neighbours)
+
+consistency ensures that we dont have duplicate words, that overlapping words to overlap correctly
+and that all words are exactly as long as their slots
+
+ac3, revise and enforce consistancy ensure that each variable is consistent within itself as well as its
+neighbours, be this in size, overlapping words and letters as well as sections
